@@ -19,6 +19,12 @@ public class WorkerHandler {
      */
     public void addTaskAndWorker(String name, int id){
         //TODO 03: Setzen Sie die Methode gemäß obiger Beschreibung um.
+        Worker tmp = allWorker.search(new Worker(name));
+        if(tmp == null){
+            tmp = new Worker(name);
+            allWorker.insert(tmp);
+        }
+        tmp.addTask(id);
     }
 
     /**
@@ -42,5 +48,16 @@ public class WorkerHandler {
         //TODO 04a: Stellen Sie handschriftlich die gewünschte Ausgabe gemäß des vorhanden Baums dar (siehe MainController ab Zeile 13). Hierbei genügen die ersten drei Arbeiter und ihre IDs, die von dieser Methode ausgegeben werden.
         //TODO 04b: Setzen Sie anschließend diese Methode gemäß obiger Beschreibung um.
         return output;
+    }
+    public void showTree(){
+        showTree(allWorker, 0);
+    }
+    private void showTree(BinarySearchTree<Worker> yeetTree, int depth){
+        if(!yeetTree.isEmpty()){
+            showTree(yeetTree.getRightTree(), depth + 1);
+            System.out.printf("%" + (depth * 10 + 1)+"s %n", yeetTree.getContent().getName());      //+1 ist wichtig, da sonst null Pointer
+            System.out.printf("%" + (depth * 10 + 6)+ "s %n", "--Task: " + yeetTree.getContent().getTaskName());
+            showTree(yeetTree.getLeftTree(), depth + 1);
+        }
     }
 }

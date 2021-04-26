@@ -220,7 +220,7 @@ public class BinarySearchTree<ContentType extends ComparableContent<ContentType>
 	 * 
 	 */
 	public ContentType search(ContentType pContent) {
-		if(pContent != null){
+		if(pContent != null && !isEmpty()){
 			if(pContent.isEqual(getContent())){
 				return getContent();
 			}else if(pContent.isGreater(getContent()) && !this.getRightTree().isEmpty()){
