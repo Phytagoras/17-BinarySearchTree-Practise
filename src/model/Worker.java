@@ -30,7 +30,16 @@ public class Worker implements ComparableContent<Worker>{
     }
     public String getTaskName(){
         if(allTasks.isEmpty()) return "";
-        return allTasks.front().getID() + "";
+        String output = ">>/|";
+        Queue<Task> tmp = new Queue<>();
+        while (!allTasks.isEmpty()){
+            output += allTasks.front().getID() + "|";
+            tmp.enqueue(allTasks.front());
+            allTasks.dequeue();
+        }
+        output += "\\";
+        allTasks = tmp;
+        return output;
     }
 
     @Override
