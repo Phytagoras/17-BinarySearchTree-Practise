@@ -28,17 +28,19 @@ public class Worker implements ComparableContent<Worker>{
     public boolean isGreater(Worker pContent){
         return (this.name.compareTo(pContent.getName())>0);
     }
-    public String getTasksNames(){
+    public String getTasksNames(boolean delete){
         if(allTasks.isEmpty()) return "";
-        String output = ">>/|";
+        String output = ">>/-";
         Queue<Task> tmp = new Queue<>();
         while (!allTasks.isEmpty()){
-            output += allTasks.front().getID() + "|";
+            output += allTasks.front().getID() + "-";
             tmp.enqueue(allTasks.front());
             allTasks.dequeue();
         }
         output += "\\";
-        allTasks = tmp;
+        if(!delete){
+            allTasks = tmp;
+        }
         return output;
     }
 

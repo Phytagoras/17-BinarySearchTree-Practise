@@ -47,7 +47,7 @@ public class WorkerHandler {
         //TODO 04a: Stellen Sie handschriftlich die gewünschte Ausgabe gemäß des vorhanden Baums dar (siehe MainController ab Zeile 13). Hierbei genügen die ersten drei Arbeiter und ihre IDs, die von dieser Methode ausgegeben werden.
         //TODO 04b: Setzen Sie anschließend diese Methode gemäß obiger Beschreibung um.
         String output = "";
-        return yeetTree.isEmpty() ? "":releaseAllTasksAndShowWorker(yeetTree.getLeftTree()) + yeetTree.getContent().getName() + ":" + yeetTree.getContent().getTasksNames() + "#" + releaseAllTasksAndShowWorker(yeetTree.getRightTree());
+        return yeetTree.isEmpty() ? "":releaseAllTasksAndShowWorker(yeetTree.getLeftTree()) + yeetTree.getContent().getName() + ":" + yeetTree.getContent().getTasksNames(true) + "#" + releaseAllTasksAndShowWorker(yeetTree.getRightTree());
     }
     public void showTree(){
         showTree(allWorker, 0);
@@ -57,7 +57,7 @@ public class WorkerHandler {
             showTree(yeetTree.getRightTree(), depth + 1);
             String tmpName = yeetTree.getContent().getName();
             System.out.printf("%" + (depth * 10 + 1 + tmpName.length())+"s %n", tmpName);      //+1 ist wichtig, da sonst null Pointer
-            String tmp = yeetTree.getContent().getTasksNames();
+            String tmp = yeetTree.getContent().getTasksNames(false);
             System.out.printf("%" + (depth * 10 + 8 + tmp.length() )+ "s %n", "~Tasks: " + tmp);
             showTree(yeetTree.getLeftTree(), depth + 1);
         }
