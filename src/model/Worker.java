@@ -28,7 +28,7 @@ public class Worker implements ComparableContent<Worker>{
     public boolean isGreater(Worker pContent){
         return (this.name.compareTo(pContent.getName())>0);
     }
-    public String getTaskName(){
+    public String getTasksNames(){
         if(allTasks.isEmpty()) return "";
         String output = ">>/|";
         Queue<Task> tmp = new Queue<>();
